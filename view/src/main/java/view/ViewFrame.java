@@ -10,12 +10,14 @@ import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 import contract.IController;
 import contract.IModel;
@@ -142,25 +144,40 @@ class ViewFrame extends JFrame implements KeyListener {
 		this.setContentPane(new ViewPanel(this));
 		this.setSize(1000,800);
 		this.setLocationRelativeTo(null);
-		
-		
-		JLabel image = new JLabel( new ImageIcon( "C:/Users/Drazyl Dul/Desktop/sprite/pd.png"));
+	 
+	
+		/*JLabel image = new JLabel( new ImageIcon( "C:/Users/Drazyl Dul/Desktop/sprite/pd.png"));
 		JLabel image2 = new JLabel( new ImageIcon( "C:/Users/Drazyl Dul/Desktop/sprite/purse.png"));
 		JLabel image3 = new JLabel( new ImageIcon( "C:/Users/Drazyl Dul/Desktop/sprite/lorann_r.png"));
 		JLabel image4 = new JLabel( new ImageIcon( "C:/Users/Drazyl Dul/Desktop/sprite/lorann_u.png"));
 		JLabel image5 = new JLabel( new ImageIcon( "C:/Users/Drazyl Dul/Desktop/sprite/lorann_l.png"));
 		JLabel image6 = new JLabel( new ImageIcon( "C:/Users/Drazyl Dul/Desktop/sprite/lorann_bl.png"));
 		JLabel image7 = new JLabel( new ImageIcon( "C:/Users/Drazyl Dul/Desktop/sprite/lorann_br.png"));
-		GridLayout grille = new GridLayout(2,4);
-		this.setLayout(grille);
+		GridLayout grille = new GridLayout(6,1);
+		this.setLayout(grille);*/
 		
-		this.add(image);
+		JFrame t = new JFrame();
+		JPanel pan = new JPanel (new GridLayout (12,20));
+		Border blackline = BorderFactory.createLineBorder(Color.green,10); 
+		for(int i = 0; i<240;i++){
+		   JPanel ptest = new JPanel();
+		   ptest.setBorder(blackline);
+		   pan.add(ptest);
+		   
+		}
+		pan.setBorder(blackline);
+		t.add(pan);
+		t.setVisible(true);
+	}
+		/*this.add(image);
 		this.add(image2);
 		this.add(image3);
 		this.add(image4);
 		this.add(image5);
 		this.add(image6);
-		this.add(image7);
+		this.add(image7);*/
+		
+
 		/*JPanel cell1 = new JPanel();
 	    cell1.setBackground(Color.YELLOW);
 	    this.add(cell1);
@@ -169,7 +186,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	    this.add(cell2);*/
 		
 
-	}
+	
 
 	/**
 	 * Prints the message.
