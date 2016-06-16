@@ -78,6 +78,8 @@ public class Controller implements IController {
 			case Indonesia:
 				this.model.loadMessage("04");
 				break;
+			case Turkish:
+				this.model.loadMessage("05");
 
 			default:
 				break;

@@ -127,7 +127,6 @@ class ViewPanel extends JPanel implements Observer {
 		this.map = this.viewFrame.getModel().getMap2();
 		
 		for (int i=0;i<this.map.length; i++){
-			System.out.println(map.length);
 			for (int j=0; j<this.map[i].length; j++){
 				
 				switch (this.map[i][j]){
@@ -225,6 +224,36 @@ class ViewPanel extends JPanel implements Observer {
 					case 'A':
 						try {
 							Image image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/monster_1.png"));
+							g.drawImage(image, 32*j, 32*i, this);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					break;
+					
+					case 'B':
+						try {
+							Image image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/monster_2.png"));
+							g.drawImage(image, 32*j, 32*i, this);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					break;
+					
+					case 'C':
+						try {
+							Image image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/monster_3.png"));
+							g.drawImage(image, 32*j, 32*i, this);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					break;
+					
+					case 'D':
+						try {
+							Image image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/monster_4.png"));
 							g.drawImage(image, 32*j, 32*i, this);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block

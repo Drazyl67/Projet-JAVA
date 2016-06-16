@@ -125,6 +125,18 @@ public class Model extends Observable implements IModel {
 					case 'U':
 						this.map2[i][j] = 'U';
 					break;
+					
+					case 'B':
+						this.map2[i][j] = 'B';
+					break;
+					
+					case 'C':
+						this.map2[i][j] = 'C';
+					break;
+					
+					case 'D':
+						this.map2[i][j] = 'D';
+					break;
 				}
 			}
 		}
