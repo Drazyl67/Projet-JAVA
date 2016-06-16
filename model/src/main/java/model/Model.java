@@ -82,22 +82,56 @@ public class Model extends Observable implements IModel {
 	public void remplissage(){
 		String [] map = this.message.split("\n");
 		for (int i=0;i<map.length;i++){
-			for (int j=0; j<map[i].length(); i++){
+			for (int j=0; j<map[i].length(); j++){
 				
 				switch (map[i].charAt(j)){
 				
-					case "V":
-						System.out.println(map2[i][j]);
-						try {
-							Image img = ImageIO.read(new File("sprite/bone.png"));
-							graphics.drawImage(img, 32*j, 32*i, this);	/** displays an image **/
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					case "O"
+					case 'V':
+						this.map2[i][j] = 'V';
+					break;
+					
+					case 'O':
+						this.map2[i][j] = 'O';
+					break;
+					
+					case '-':
+						this.map2[i][j] = '-';
+					break;
+					
+					case 'I':
+						this.map2[i][j] = 'I';
+					break;
+					
+					case '@':
+						this.map2[i][j] = '@';
+					break;
+					
+					case 'Q':
+						this.map2[i][j] = 'Q';
+					break;
+					
+					case 'Y':
+						this.map2[i][j] = 'Y';
+					break;
+					
+					case '1':
+						this.map2[i][j] = '1';
+					break;
+					
+					case 'A':
+						this.map2[i][j] = 'A';
+					break;
+					
+					case 'U':
+						this.map2[i][j] = 'U';
+					break;
 				}
 			}
 		}
 		
+	}
+	
+	public char[][] getMap2(){
+		return this.map2;
 	}
 }

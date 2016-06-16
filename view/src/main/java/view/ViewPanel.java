@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -30,6 +31,8 @@ class ViewPanel extends JPanel implements Observer {
 	private ViewFrame					viewFrame;
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -998294702363713521L;
+	
+	private char[][] map;
 
 	/**
 	 * Instantiates a new view panel.
@@ -89,6 +92,7 @@ class ViewPanel extends JPanel implements Observer {
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 	 */
 	public void update(final Observable arg0, final Object arg1) {
+		this.viewFrame.getModel().remplissage();
 		this.repaint();
 	}
 	
@@ -104,13 +108,13 @@ class ViewPanel extends JPanel implements Observer {
 	@Override
 	protected void paintComponent(final Graphics g) {
 		
-		BufferedImage image = null;
+	/*	BufferedImage image = null;
 		try {
 			image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/pd.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+	}*/
 		super.paintComponent(g); //paint background
        // if (image != null) { //there is a picture: draw it
            // int height = this.getSize().height;
@@ -118,7 +122,119 @@ class ViewPanel extends JPanel implements Observer {
           //  g.drawImage(image, 0, 0, 32, 32, null, null); //use image size          
             //graphics.drawImage(image,0,0, width, height, this);
 		g.clearRect(0, 0, this.getWidth(), this.getHeight());
-		g.drawString(this.getViewFrame().getModel().getMessage(), 10, 20);
+	//	g.drawString(this.getViewFrame().getModel().getMessage(), 10, 20);
+		
+		this.map = this.viewFrame.getModel().getMap2();
+		
+		for (int i=0;i<this.map.length; i++){
+			System.out.println(map.length);
+			for (int j=0; j<this.map[i].length; j++){
+				
+				switch (this.map[i][j]){
+				
+					case 'V':
+						try {
+							Image image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/Vide.png"));
+							g.drawImage(image, 32*j, 32*i, this);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					break;
+					
+					case 'O':
+						try {
+							Image image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/rocher.png"));
+							g.drawImage(image, 32*j, 32*i, this);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					break;
+					
+					case '-':
+						try {
+							Image image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/horizontal_bone.png"));
+							g.drawImage(image, 32*j, 32*i, this);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					break;
+					
+					case 'I':
+						try {
+							Image image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/vertical_bone.png"));
+							g.drawImage(image, 32*j, 32*i, this);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					break;
+					
+					case '@':
+						try {
+							Image image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/lorann_u.png"));
+							g.drawImage(image, 32*j, 32*i, this);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					break;
+					
+					case 'Q':
+						try {
+							Image image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/crystal_ball.png"));
+							g.drawImage(image, 32*j, 32*i, this);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					break;
+					
+					case 'Y':
+						try {
+							Image image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/gate_closed.png"));
+							g.drawImage(image, 32*j, 32*i, this);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					break;
+					
+					case 'U':
+						try {
+							Image image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/gate_open.png"));
+							g.drawImage(image, 32*j, 32*i, this);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					break;
+					
+					case '1':
+						try {
+							Image image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/purse.png"));
+							g.drawImage(image, 32*j, 32*i, this);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					break;
+					
+					case 'A':
+						try {
+							Image image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/monster_1.png"));
+							g.drawImage(image, 32*j, 32*i, this);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					break;
+						
+				}
+			}
+		}
 	}
 }
 
