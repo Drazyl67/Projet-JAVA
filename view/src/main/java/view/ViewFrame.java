@@ -139,10 +139,10 @@ class ViewFrame extends JFrame implements KeyListener {
 	private void buildViewFrame(final IModel model) {
 		this.setModel(model);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(false);
+		this.setResizable(true);
 		this.addKeyListener(this);
 		this.setContentPane(new ViewPanel(this));
-		this.setSize(1000,800);
+		this.setSize(640,380);
 		this.setLocationRelativeTo(null);
 	 
 	
@@ -156,18 +156,19 @@ class ViewFrame extends JFrame implements KeyListener {
 		GridLayout grille = new GridLayout(6,1);
 		this.setLayout(grille);*/
 		
-		JFrame t = new JFrame();
+		/*JFrame t = new JFrame();
 		JPanel pan = new JPanel (new GridLayout (12,20));
-		Border blackline = BorderFactory.createLineBorder(Color.green,10); 
+		Border blackline = BorderFactory.createLineBorder(Color.black,1); 
 		for(int i = 0; i<240;i++){
 		   JPanel ptest = new JPanel();
 		   ptest.setBorder(blackline);
 		   pan.add(ptest);
-		   
+		   ptest.setVisible(true);
 		}
 		pan.setBorder(blackline);
 		t.add(pan);
-		t.setVisible(true);
+		t.setVisible(true);*/
+		
 	}
 		/*this.add(image);
 		this.add(image2);
