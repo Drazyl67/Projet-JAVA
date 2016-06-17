@@ -40,17 +40,25 @@ public class View implements IView, Runnable {
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
 			case KeyEvent.VK_NUMPAD1:
-				return ControllerOrder.English;
+				return ControllerOrder.Map1;
 			case KeyEvent.VK_NUMPAD2:
-				return ControllerOrder.Francais;
+				return ControllerOrder.Map2;
 			case KeyEvent.VK_NUMPAD3:
-				return ControllerOrder.Deutsch;
+				return ControllerOrder.Map3;
 			case KeyEvent.VK_NUMPAD4:
-				return ControllerOrder.Indonesia;
+				return ControllerOrder.Map4;
 			case KeyEvent.VK_NUMPAD5:
-				return ControllerOrder.Turkish;
+				return ControllerOrder.Map5;
+			case KeyEvent.VK_UP:
+				return ControllerOrder.MoveUp;
+			case KeyEvent.VK_DOWN:
+				return ControllerOrder.MoveDown;
+			case KeyEvent.VK_LEFT:
+				return ControllerOrder.MoveLeft;
+			case KeyEvent.VK_RIGHT:
+				return ControllerOrder.MoveRight;
 			default:
-				return ControllerOrder.English;
+				return ControllerOrder.MapInconnu;
 		}
 	}
 

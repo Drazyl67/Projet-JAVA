@@ -34,4 +34,12 @@ public interface IModel {
 	char[][] getMap2();
 
 	void remplissage();
+
+	void moveUp();
+
+	void moveLeft();
+
+	void moveRight();
+
+	void moveDown();
 }

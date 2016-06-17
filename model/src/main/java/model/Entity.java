@@ -6,5 +6,7 @@ package model;
  * @author Jean-Aymeric Diet
  */
 abstract class Entity {
+	
+	
 
 }

@@ -24,11 +24,21 @@ public class Model extends Observable implements IModel {
 	/** The message. */
 	private String message;
 	public char[][] map2 = new char[12][20];
+	public int posX = 0;
+	public int posY = 0;
+	private Player player;
+	
+	
+	public Player getPlayer() {
+		return player;
+	}
+
 	/**
 	 * Instantiates a new model.
 	 */
 	public Model() {
 		this.message = "";
+		this.player = new Player();
 	}
 
 	/*
@@ -104,6 +114,10 @@ public class Model extends Observable implements IModel {
 					
 					case '@':
 						this.map2[i][j] = '@';
+						this.getPlayer().setX(j);
+						this.getPlayer().setY(i);
+						System.out.println(this.getPlayer().getX());
+						System.out.println(this.getPlayer().getY());
 					break;
 					
 					case 'Q':
@@ -143,7 +157,44 @@ public class Model extends Observable implements IModel {
 		
 	}
 	
+/*	public int posP(){
+		for(int x=0;x<map2.length;x++){
+			for (int y=0; y<map2[x].length;y++){
+				posX = x;
+				posY = y;
+				System.out.println(x);
+				System.out.println(y);
+			//	positionP[posX][posY];
+				
+				
+			}
+		}*/
+	
 	public char[][] getMap2(){
 		return this.map2;
+	}
+	
+	public void moveUp(){
+		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
+		this.getPlayer().setY(this.getPlayer().getY()-1);
+		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+	}
+	
+	public void moveDown(){
+		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
+		this.getPlayer().setY(this.getPlayer().getY()+1);
+		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+	}
+	
+	public void moveRight(){
+		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
+		this.getPlayer().setX(this.getPlayer().getX()+1);
+		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+	}
+	
+	public void moveLeft(){
+		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
+		this.getPlayer().setX(this.getPlayer().getX()-1);
+		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
 	}
 }

@@ -172,13 +172,7 @@ class ViewPanel extends JPanel implements Observer {
 					break;
 					
 					case '@':
-						try {
-							Image image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/lorann_u.png"));
-							g.drawImage(image, 32*j, 32*i, this);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+						g.drawImage((new ImageIcon("C:/Users/Drazyl Dul/Desktop/sprite/lorann_gif2.gif")).getImage(),32*j,32*i, this);						
 					break;
 					
 					case 'Q':
@@ -267,3 +261,6 @@ class ViewPanel extends JPanel implements Observer {
 	}
 }
 
+	/*public int getPosX(){
+		return ();
+	}*/
