@@ -172,7 +172,7 @@ class ViewPanel extends JPanel implements Observer {
 					break;
 					
 					case '@':
-						g.drawImage((new ImageIcon("C:/Users/Drazyl Dul/Desktop/sprite/lorann_gif2.gif")).getImage(),32*j,32*i, this);						
+						g.drawImage((new ImageIcon("C:/Users/Drazyl Dul/Desktop/sprite/lorann_gif.gif")).getImage(),32*j,32*i, this);						
 					break;
 					
 					case 'Q':

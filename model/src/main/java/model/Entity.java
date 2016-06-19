@@ -1,5 +1,6 @@
 package model;
 
+
 /**
  * The Class Entity.
  *
@@ -7,6 +8,4 @@ package model;
  */
 abstract class Entity {
 	
-	
-
 }

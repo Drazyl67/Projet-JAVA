@@ -24,9 +24,8 @@ public class Model extends Observable implements IModel {
 	/** The message. */
 	private String message;
 	public char[][] map2 = new char[12][20];
-	public int posX = 0;
-	public int posY = 0;
 	private Player player;
+	public boolean permeability;
 	
 	
 	public Player getPlayer() {
@@ -116,8 +115,6 @@ public class Model extends Observable implements IModel {
 						this.map2[i][j] = '@';
 						this.getPlayer().setX(j);
 						this.getPlayer().setY(i);
-						System.out.println(this.getPlayer().getX());
-						System.out.println(this.getPlayer().getY());
 					break;
 					
 					case 'Q':
@@ -175,26 +172,42 @@ public class Model extends Observable implements IModel {
 	}
 	
 	public void moveUp(){
+		if ((map2[this.getPlayer().getY()-1][this.getPlayer().getX()]) != 'O' && (map2[this.getPlayer().getY()-1][this.getPlayer().getX()]) != '-' && (map2[this.getPlayer().getY()-1][this.getPlayer().getX()]) != 'I'){
+			
 		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
 		this.getPlayer().setY(this.getPlayer().getY()-1);
 		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+		}
+		else;
 	}
 	
 	public void moveDown(){
+		if (map2[this.getPlayer().getY()+1][this.getPlayer().getX()] != 'O' && map2[this.getPlayer().getY()+1][this.getPlayer().getX()] != '-' && map2[this.getPlayer().getY()+1][this.getPlayer().getX()] != 'I'){
+		
 		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
 		this.getPlayer().setY(this.getPlayer().getY()+1);
 		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+		}
+		else;
 	}
 	
 	public void moveRight(){
+		if (map2[this.getPlayer().getY()][this.getPlayer().getX()+1] != 'O' && map2[this.getPlayer().getY()][this.getPlayer().getX()+1] != '-' && map2[this.getPlayer().getY()][this.getPlayer().getX()+1] != 'I'){
+		
 		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
 		this.getPlayer().setX(this.getPlayer().getX()+1);
 		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+		}
+		else;
 	}
 	
 	public void moveLeft(){
+		if (map2[this.getPlayer().getY()][this.getPlayer().getX()-1] != 'O' && map2[this.getPlayer().getY()][this.getPlayer().getX()-1] != '-' && map2[this.getPlayer().getY()][this.getPlayer().getX()-1] != 'I'){
+		
 		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
 		this.getPlayer().setX(this.getPlayer().getX()-1);
 		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+		}
+		else;
 	}
 }
