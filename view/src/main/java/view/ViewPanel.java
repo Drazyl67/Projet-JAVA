@@ -95,7 +95,7 @@ class ViewPanel extends JPanel implements Observer {
 		this.viewFrame.getModel().remplissage();
 		this.repaint();
 	}
-	
+	int o=0;
 //	JLabel image = new JLabel( new ImageIcon( "C:/Users/Drazyl Dul/Desktop/sprite/pd.png"));
 //	JLabel image2 = new JLabel( new ImageIcon( "C:/Users/Drazyl Dul/Desktop/sprite/purse.png"));
 	//final BufferedImage image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/pd.png"));
@@ -106,7 +106,10 @@ class ViewPanel extends JPanel implements Observer {
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
 	@Override
+	
 	protected void paintComponent(final Graphics g) {
+		
+		
 		
 	/*	BufferedImage image = null;
 		try {
@@ -116,12 +119,17 @@ class ViewPanel extends JPanel implements Observer {
 			e.printStackTrace();
 	}*/
 		super.paintComponent(g); //paint background
+		g.setColor(Color.BLACK);
+		
+		this.viewFrame.getModel().monsterA();
+		o = o+1;
+		
        // if (image != null) { //there is a picture: draw it
            // int height = this.getSize().height;
            // int width = this.getSize().width;
           //  g.drawImage(image, 0, 0, 32, 32, null, null); //use image size          
             //graphics.drawImage(image,0,0, width, height, this);
-		g.clearRect(0, 0, this.getWidth(), this.getHeight());
+		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 	//	g.drawString(this.getViewFrame().getModel().getMessage(), 10, 20);
 		
 		this.map = this.viewFrame.getModel().getMap2();
@@ -259,8 +267,13 @@ class ViewPanel extends JPanel implements Observer {
 			}
 		}
 	}
+	public int getO(){
+		return o;
+	}
+	
+	public void setO(){
+		this.o = o;
+	}
 }
 
-	/*public int getPosX(){
-		return ();
-	}*/
+

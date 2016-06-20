@@ -36,7 +36,7 @@ public class Controller implements IController {
 	 * @see contract.IController#control()
 	 */
 	public void control() {
-		this.view.printMessage("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
+		this.view.printMessage("Appuyer sur les touches '1', '2', '3', '4' ou '5', pour afficher la carte de votre choix.");
 	}
 
 	/**
@@ -94,6 +94,7 @@ public class Controller implements IController {
 				this.model.moveLeft();
 				break;
 			default:
+				this.model.monsterAMove();
 				break;
 		}
 	}

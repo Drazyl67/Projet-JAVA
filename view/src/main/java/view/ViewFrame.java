@@ -144,6 +144,7 @@ class ViewFrame extends JFrame implements KeyListener {
 		this.setContentPane(new ViewPanel(this));
 		this.setSize(655,420);
 		this.setLocationRelativeTo(null);
+		
 	 
 	
 		/*JLabel image = new JLabel( new ImageIcon( "C:/Users/Drazyl Dul/Desktop/sprite/pd.png"));

@@ -42,4 +42,10 @@ public interface IModel {
 	void moveRight();
 
 	void moveDown();
+
+	void monsterA();
+	
+	int getO();
+	
+	void monsterAMove();
 }

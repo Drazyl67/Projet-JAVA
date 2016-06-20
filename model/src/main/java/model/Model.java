@@ -26,18 +26,25 @@ public class Model extends Observable implements IModel {
 	public char[][] map2 = new char[12][20];
 	private Player player;
 	public boolean permeability;
-	
+	private MonsterA monsterA;
+	public int o;
 	
 	public Player getPlayer() {
 		return player;
 	}
-
+	
+	public MonsterA getMonsterA(){
+		return monsterA;
+	}
+	
+	
 	/**
 	 * Instantiates a new model.
 	 */
 	public Model() {
 		this.message = "";
 		this.player = new Player();
+		this.monsterA = new MonsterA();
 	}
 
 	/*
@@ -131,6 +138,8 @@ public class Model extends Observable implements IModel {
 					
 					case 'A':
 						this.map2[i][j] = 'A';
+						this.getMonsterA().setX(j);
+						this.getMonsterA().setY(i);
 					break;
 					
 					case 'U':
@@ -209,5 +218,62 @@ public class Model extends Observable implements IModel {
 		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
 		}
 		else;
+	}
+
+	/*public void monsterAMove(){
+			
+		
+		
+		while (map2[this.getMonsterA().getY()][this.getMonsterA().getX()+1]!= 'O' && map2[this.getMonsterA().getY()][this.getMonsterA().getX()+1]!= '-' && map2[this.getMonsterA().getY()][this.getMonsterA().getX()+1]!= 'I'){
+			
+			this.map2[this.getMonsterA().getY()][this.getMonsterA().getX()] = 'V';
+			this.getMonsterA().setX(this.getMonsterA().getX()+1);
+			this.map2[this.getMonsterA().getY()][this.getMonsterA().getX()] = 'A';
+			//System.out.println(this.getMonsterA().getX());
+			//this.viewFrame.getModel().setO(this.viewFrame.getModel().getO() +1);
+		}
+	}}*/
+	
+public void monsterA() {
+  //  if (this.getO() == 3) {
+         {
+            int mx = getMonsterA().getX();
+            int hx = getPlayer().getX();
+            int my = getMonsterA().getY();
+            int hy = getPlayer().getY();
+            /** if x is lower than lorann's increments it**/
+            if (mx < hx && map2[this.getMonsterA().getY()][this.getMonsterA().getX()+1]!= 'O' && map2[this.getMonsterA().getY()][this.getMonsterA().getX()+1]!= '-' && map2[this.getMonsterA().getY()][this.getMonsterA().getX()+1]!= 'I') {
+            	this.map2[this.getMonsterA().getY()][this.getMonsterA().getX()] = 'V';
+        		this.getMonsterA().setX(this.getMonsterA().getX()+1);
+        		this.map2[this.getMonsterA().getY()][this.getMonsterA().getX()] = 'A';
+            }
+            /** if x is higher than lorann's decrement it**/
+            if (mx > hx && map2[this.getMonsterA().getY()][this.getMonsterA().getX()-1]!= 'O' && map2[this.getMonsterA().getY()][this.getMonsterA().getX()-1]!= '-' && map2[this.getMonsterA().getY()][this.getMonsterA().getX()-1]!= 'I') {
+        		this.map2[this.getMonsterA().getY()][this.getMonsterA().getX()] = 'V';
+        		this.getMonsterA().setX(this.getMonsterA().getX()-1);
+        		this.map2[this.getMonsterA().getY()][this.getMonsterA().getX()] = 'A';
+            }
+            /** if y is lower than lorann's increments it**/
+            if (my < hy && map2[this.getMonsterA().getY()+1][this.getMonsterA().getX()]!= 'O' && map2[this.getMonsterA().getY()+1][this.getMonsterA().getX()]!= '-' && map2[this.getMonsterA().getY()+1][this.getMonsterA().getX()]!= 'I') {
+            	this.map2[this.getMonsterA().getY()][this.getMonsterA().getX()] = 'V';
+        		this.getMonsterA().setY(this.getMonsterA().getY()+1);
+        		this.map2[this.getMonsterA().getY()][this.getMonsterA().getX()] = 'A';
+            }
+            /** if y is higher than lorann's decrement it **/
+            if (my > hy && map2[this.getMonsterA().getY()-1][this.getMonsterA().getX()]!= 'O' && map2[this.getMonsterA().getY()-1][this.getMonsterA().getX()]!= '-' && map2[this.getMonsterA().getY()-1][this.getMonsterA().getX()]!= 'I') {
+            	this.map2[this.getMonsterA().getY()][this.getMonsterA().getX()] = 'V';
+        		this.getMonsterA().setY(this.getMonsterA().getY()-1);
+        		this.map2[this.getMonsterA().getY()][this.getMonsterA().getX()] = 'A';
+            }
+        }
+    }
+//}
+	public int getO(){
+		return o;
+	}
+
+	public void monsterAMove() {
+		// TODO Auto-generated method stub
+		
 	}
 }
