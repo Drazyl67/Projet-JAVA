@@ -8,12 +8,12 @@ public class Player {
 		/**
 		 * the x
 		 */
-		int x;
+		int x=0;
 		
 		/**
 		 * the y
 		 */
-		int y;
+		int y=1;
 		
 		/**
 		 * get x

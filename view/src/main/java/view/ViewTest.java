@@ -1,15 +1,14 @@
-package model;
+package view;
 
 import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class HelloWorldTest {
+public class ViewTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -27,15 +26,25 @@ public class HelloWorldTest {
 	public void tearDown() throws Exception {
 	}
 
+
 	@Test
-	public void testHelloWorldIntStringString() {
-		
-		Assert.assertEquals("", "", "");
+	public void testKeyCodeToControllerOrder() {
+
 	}
 
 	@Test
-	public void testHelloWorld() {
-		Assert.assertEquals("", "", "");
+	public void testPrintMessage() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testRun() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetController() {
+		fail("Not yet implemented");
 	}
 
 }

@@ -24,6 +24,14 @@ public class Model extends Observable implements IModel {
 	public boolean permeability;
 	/** the monster A */
 	private MonsterA monsterA;
+	/** the monster B */
+	private MonsterB monsterB;
+	/** the monster C */
+	private MonsterC monsterC;
+	/** the monster D */
+	private MonsterD monsterD;
+	private FireBall fireball;
+	public int lastKey=1;
 
 	/** return the player position */
 	public Player getPlayer() {
@@ -36,6 +44,26 @@ public class Model extends Observable implements IModel {
 	public MonsterA getMonsterA(){
 		return monsterA;
 	}
+	/**
+	 * Return the monster position
+	 */
+	public MonsterB getMonsterB(){
+		return monsterB;
+	}
+	
+	/**
+	 * Return the monster position
+	 */
+	public MonsterC getMonsterC(){
+		return monsterC;
+	}
+	
+	/**
+	 * Return the monster position
+	 */
+	public MonsterD getMonsterD(){
+		return monsterD;
+	}
 	
 	
 	/**
@@ -45,6 +73,10 @@ public class Model extends Observable implements IModel {
 		this.message = "";
 		this.player = new Player();
 		this.monsterA = new MonsterA();
+		this.monsterB = new MonsterB();
+		this.monsterC = new MonsterC();
+		this.monsterD = new MonsterD();
+		
 	}
 
 	/*
@@ -139,6 +171,7 @@ public class Model extends Observable implements IModel {
 						this.map2[i][j] = 'A';
 						this.getMonsterA().setX(j);
 						this.getMonsterA().setY(i);
+						this.getMonsterA().setAlive(true);
 					break;
 					
 					case 'U':
@@ -147,14 +180,23 @@ public class Model extends Observable implements IModel {
 					
 					case 'B':
 						this.map2[i][j] = 'B';
+						this.getMonsterB().setX(j);
+						this.getMonsterB().setY(i);
+						this.getMonsterB().setAlive(true);
 					break;
 					
 					case 'C':
 						this.map2[i][j] = 'C';
+						this.getMonsterC().setX(j);
+						this.getMonsterC().setY(i);
+						this.getMonsterC().setAlive(true);
 					break;
 					
 					case 'D':
 						this.map2[i][j] = 'D';
+						this.getMonsterD().setX(j);
+						this.getMonsterD().setY(i);
+						this.getMonsterD().setAlive(true);
 					break;
 				}
 			}
@@ -208,7 +250,7 @@ public class Model extends Observable implements IModel {
 	 * Move up the player
 	 */
 	public void moveUp(){
-		if ((map2[this.getPlayer().getY()-1][this.getPlayer().getX()]) == 'V' || map2[this.getPlayer().getY()-1][this.getPlayer().getX()] == 'U'){
+		if ((map2[this.getPlayer().getY()-1][this.getPlayer().getX()]) == 'V'){
 			
 		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
 		this.getPlayer().setY(this.getPlayer().getY()-1);
@@ -223,11 +265,11 @@ public class Model extends Observable implements IModel {
 		}
 		else if (map2[this.getPlayer().getY()-1][this.getPlayer().getX()] == 'Q'){
 			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
-			this.getPlayer().setX(this.getPlayer().getY()-1);
+			this.getPlayer().setY(this.getPlayer().getY()-1);
 			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
 			switch (mapID){
 			case 1:
-			map2[8][14] = 'U';
+			map2[6][18] = 'U';
 			break;
 			case 2:
 			map2[4][19] = 'U';
@@ -247,7 +289,20 @@ public class Model extends Observable implements IModel {
 			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
 			this.getPlayer().setX(this.getPlayer().getY()-1);
 			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
-			this.loadMessage("05");
+			switch (mapID){
+			case 1:
+				this.loadMessage("02");
+				break;
+			case 2:
+				this.loadMessage("03");
+				break;
+			case 3:
+				this.loadMessage("04");
+				break;
+			case 4:
+				this.loadMessage("05");
+				break;
+			}
 		}
 	}
 	/**
@@ -269,11 +324,11 @@ public class Model extends Observable implements IModel {
 		}
 		else if (map2[this.getPlayer().getY()+1][this.getPlayer().getX()] == 'Q'){
 			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
-			this.getPlayer().setX(this.getPlayer().getY()+1);
+			this.getPlayer().setY(this.getPlayer().getY()+1);
 			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
 			switch (mapID){
 			case 1:
-			map2[8][14] = 'U';
+			map2[6][18] = 'U';
 			break;
 			case 2:
 			map2[4][19] = 'U';
@@ -287,13 +342,26 @@ public class Model extends Observable implements IModel {
 			case 5:
 			map2[11][10] = 'U';
 			break;
-			}
+			}System.out.println("lawl");
 		}
 		else if (map2[this.getPlayer().getY()+1][this.getPlayer().getX()] == 'U'){
 			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
 			this.getPlayer().setX(this.getPlayer().getY()+1);
 			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
-			this.loadMessage("05");
+			switch (mapID){
+			case 1:
+				this.loadMessage("02");
+				break;
+			case 2:
+				this.loadMessage("03");
+				break;
+			case 3:
+				this.loadMessage("04");
+				break;
+			case 4:
+				this.loadMessage("05");
+				break;
+			}
 		}
 	}
 	/**
@@ -319,7 +387,7 @@ public class Model extends Observable implements IModel {
 			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
 			switch (mapID){
 			case 1:
-			map2[8][14] = 'U';
+			map2[6][18] = 'U';
 			break;
 			case 2:
 			map2[4][19] = 'U';
@@ -333,13 +401,29 @@ public class Model extends Observable implements IModel {
 			case 5:
 			map2[11][10] = 'U';
 			break;
+			
 			}
 		}
 		else if (map2[this.getPlayer().getY()][this.getPlayer().getX()+1] == 'U'){
 			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
 			this.getPlayer().setX(this.getPlayer().getX()+1);
 			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
-			this.loadMessage("05");
+			switch (mapID){
+			case 1:
+				
+				this.loadMessage("02");
+				break;
+			case 2:
+				this.loadMessage("03");
+				break;
+			case 3:
+				this.loadMessage("04");
+				break;
+			case 4:
+				this.loadMessage("05");
+				break;
+			}
+			
 		}
 	}
 	/**
@@ -365,7 +449,7 @@ public class Model extends Observable implements IModel {
 			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
 			switch (mapID){
 			case 1:
-			map2[8][14] = 'U';
+			map2[6][18] = 'U';
 			break;
 			case 2:
 			map2[4][19] = 'U';
@@ -385,7 +469,20 @@ public class Model extends Observable implements IModel {
 			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
 			this.getPlayer().setX(this.getPlayer().getX()-1);
 			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
-			this.loadMessage("05");
+			switch (mapID){
+			case 1:
+				this.loadMessage("02");
+				break;
+			case 2:
+				this.loadMessage("03");
+				break;
+			case 3:
+				this.loadMessage("04");
+				break;
+			case 4:
+				this.loadMessage("05");
+				break;
+			}
 		}
 	}
 
@@ -408,34 +505,192 @@ public class Model extends Observable implements IModel {
 	 */
 public void monsterA() {
          {
+        	 if (this.monsterA.isAlive()== true){
             int mx = getMonsterA().getX();
             int hx = getPlayer().getX();
             int my = getMonsterA().getY();
             int hy = getPlayer().getY();
             /** if x is lower than lorann's increments it**/
-            if (mx < hx && map2[this.getMonsterA().getY()][this.getMonsterA().getX()+1]!= 'O' && map2[this.getMonsterA().getY()][this.getMonsterA().getX()+1]!= '-' && map2[this.getMonsterA().getY()][this.getMonsterA().getX()+1]!= 'I') {
+            if (mx < hx && map2[this.getMonsterA().getY()][this.getMonsterA().getX()+1]!= 'O' && map2[this.getMonsterA().getY()][this.getMonsterA().getX()+1]!= '-' && map2[this.getMonsterA().getY()][this.getMonsterA().getX()+1]!= 'I'&& map2[this.getMonsterB().getY()][this.getMonsterB().getX()+1]!= 'Q') {
             	this.map2[this.getMonsterA().getY()][this.getMonsterA().getX()] = 'V';
         		this.getMonsterA().setX(this.getMonsterA().getX()+1);
         		this.map2[this.getMonsterA().getY()][this.getMonsterA().getX()] = 'A';
             }
             /** if x is higher than lorann's decrement it**/
-            if (mx > hx && map2[this.getMonsterA().getY()][this.getMonsterA().getX()-1]!= 'O' && map2[this.getMonsterA().getY()][this.getMonsterA().getX()-1]!= '-' && map2[this.getMonsterA().getY()][this.getMonsterA().getX()-1]!= 'I') {
+            if (mx > hx && map2[this.getMonsterA().getY()][this.getMonsterA().getX()-1]!= 'O' && map2[this.getMonsterA().getY()][this.getMonsterA().getX()-1]!= '-' && map2[this.getMonsterA().getY()][this.getMonsterA().getX()-1]!= 'I'&& map2[this.getMonsterB().getY()][this.getMonsterB().getX()-1]!= 'Q') {
         		this.map2[this.getMonsterA().getY()][this.getMonsterA().getX()] = 'V';
         		this.getMonsterA().setX(this.getMonsterA().getX()-1);
         		this.map2[this.getMonsterA().getY()][this.getMonsterA().getX()] = 'A';
             }
             /** if y is lower than lorann's increments it**/
-            if (my < hy && map2[this.getMonsterA().getY()+1][this.getMonsterA().getX()]!= 'O' && map2[this.getMonsterA().getY()+1][this.getMonsterA().getX()]!= '-' && map2[this.getMonsterA().getY()+1][this.getMonsterA().getX()]!= 'I') {
+            if (my < hy && map2[this.getMonsterA().getY()+1][this.getMonsterA().getX()]!= 'O' && map2[this.getMonsterA().getY()+1][this.getMonsterA().getX()]!= '-' && map2[this.getMonsterA().getY()+1][this.getMonsterA().getX()]!= 'I'&& map2[this.getMonsterB().getY()+1][this.getMonsterB().getX()]!= 'Q') {
             	this.map2[this.getMonsterA().getY()][this.getMonsterA().getX()] = 'V';
         		this.getMonsterA().setY(this.getMonsterA().getY()+1);
         		this.map2[this.getMonsterA().getY()][this.getMonsterA().getX()] = 'A';
             }
             /** if y is higher than lorann's decrement it **/
-            if (my > hy && map2[this.getMonsterA().getY()-1][this.getMonsterA().getX()]!= 'O' && map2[this.getMonsterA().getY()-1][this.getMonsterA().getX()]!= '-' && map2[this.getMonsterA().getY()-1][this.getMonsterA().getX()]!= 'I') {
+            if (my > hy && map2[this.getMonsterA().getY()-1][this.getMonsterA().getX()]!= 'O' && map2[this.getMonsterA().getY()-1][this.getMonsterA().getX()]!= '-' && map2[this.getMonsterA().getY()-1][this.getMonsterA().getX()]!= 'I'&& map2[this.getMonsterB().getY()-1][this.getMonsterB().getX()]!= 'Q') {
             	this.map2[this.getMonsterA().getY()][this.getMonsterA().getX()] = 'V';
         		this.getMonsterA().setY(this.getMonsterA().getY()-1);
         		this.map2[this.getMonsterA().getY()][this.getMonsterA().getX()] = 'A';
             }
-        }
+            if (mx == hx && my == hy){
+         	 //  this.loadMessage("06");
+         	   this.monsterA.setAlive(false);
+         	  this.monsterB.setAlive(false);
+         	 this.monsterC.setAlive(false);
+         	this.monsterD.setAlive(false);
+            }
+        }}
     }
+public void monsterB() {
+    {
+    	 if (this.monsterB.isAlive()== true){
+       int mx = getMonsterB().getX();
+       int hx = getPlayer().getX();
+       int my = getMonsterB().getY();
+       int hy = getPlayer().getY();
+       /** if x is lower than lorann's increments it**/
+       if (mx < hx && map2[this.getMonsterB().getY()][this.getMonsterB().getX()+1]!= 'O' && map2[this.getMonsterB().getY()][this.getMonsterB().getX()+1]!= '-' && map2[this.getMonsterB().getY()][this.getMonsterB().getX()+1]!= 'I' && map2[this.getMonsterA().getY()][this.getMonsterA().getX()+1]!= 'A' && map2[this.getMonsterB().getY()][this.getMonsterB().getX()+1]!= 'Q') {
+       	this.map2[this.getMonsterB().getY()][this.getMonsterB().getX()] = 'V';
+   		this.getMonsterB().setX(this.getMonsterB().getX()+1);
+   		this.map2[this.getMonsterB().getY()][this.getMonsterB().getX()] = 'B';
+       }
+       /** if x is higher than lorann's decrement it**/
+       if (mx > hx && map2[this.getMonsterB().getY()][this.getMonsterB().getX()-1]!= 'O' && map2[this.getMonsterB().getY()][this.getMonsterB().getX()-1]!= '-' && map2[this.getMonsterB().getY()][this.getMonsterB().getX()-1]!= 'I' && map2[this.getMonsterA().getY()][this.getMonsterA().getX()-1]!= 'A' && map2[this.getMonsterB().getY()][this.getMonsterB().getX()-1]!= 'Q') {
+   		this.map2[this.getMonsterB().getY()][this.getMonsterB().getX()] = 'V';
+   		this.getMonsterB().setX(this.getMonsterB().getX()-1);
+   		this.map2[this.getMonsterB().getY()][this.getMonsterB().getX()] = 'B';
+       }
+       /** if y is lower than lorann's increments it**/
+       if (my < hy && map2[this.getMonsterB().getY()+1][this.getMonsterB().getX()]!= 'O' && map2[this.getMonsterB().getY()+1][this.getMonsterB().getX()]!= '-' && map2[this.getMonsterB().getY()+1][this.getMonsterB().getX()]!= 'I' && map2[this.getMonsterA().getY()+1][this.getMonsterA().getX()]!= 'A'&& map2[this.getMonsterB().getY()+1][this.getMonsterB().getX()]!= 'Q') {
+       	this.map2[this.getMonsterB().getY()][this.getMonsterB().getX()] = 'V';
+   		this.getMonsterB().setY(this.getMonsterB().getY()+1);
+   		this.map2[this.getMonsterB().getY()][this.getMonsterB().getX()] = 'B';
+       }
+       /** if y is higher than lorann's decrement it **/
+       if (my > hy && map2[this.getMonsterB().getY()-1][this.getMonsterB().getX()]!= 'O' && map2[this.getMonsterB().getY()-1][this.getMonsterB().getX()]!= '-' && map2[this.getMonsterB().getY()-1][this.getMonsterB().getX()]!= 'I' && map2[this.getMonsterA().getY()-1][this.getMonsterA().getX()]!= 'A'&& map2[this.getMonsterB().getY()-1][this.getMonsterB().getX()]!= 'Q') {
+       	this.map2[this.getMonsterB().getY()][this.getMonsterB().getX()] = 'V';
+   		this.getMonsterB().setY(this.getMonsterB().getY()-1);
+   		this.map2[this.getMonsterB().getY()][this.getMonsterB().getX()] = 'B';
+       }
+    	 if (mx == hx && my == hy){
+       	  // this.loadMessage("06");
+       	   this.monsterA.setAlive(false);
+       	  this.monsterB.setAlive(false);
+       	 this.monsterC.setAlive(false);
+       	this.monsterD.setAlive(false);
+          }}
+   }
+}
+public void monsterC() {
+    {
+    	 if (this.monsterC.isAlive()== true){
+       int mx = getMonsterC().getX();
+       int hx = getPlayer().getX();
+       int my = getMonsterC().getY();
+       int hy = getPlayer().getY();
+       /** if x is lower than lorann's increments it**/
+       if (mx < hx && map2[this.getMonsterC().getY()][this.getMonsterC().getX()+1]!= 'O' && map2[this.getMonsterC().getY()][this.getMonsterC().getX()+1]!= '-' && map2[this.getMonsterC().getY()][this.getMonsterC().getX()+1]!= 'I') {
+       	this.map2[this.getMonsterC().getY()][this.getMonsterC().getX()] = 'V';
+   		this.getMonsterC().setX(this.getMonsterC().getX()+1);
+   		this.map2[this.getMonsterC().getY()][this.getMonsterC().getX()] = 'C';
+       }
+       /** if x is higher than lorann's decrement it**/
+       if (mx > hx && map2[this.getMonsterC().getY()][this.getMonsterC().getX()-1]!= 'O' && map2[this.getMonsterC().getY()][this.getMonsterC().getX()-1]!= '-' && map2[this.getMonsterC().getY()][this.getMonsterC().getX()-1]!= 'I') {
+   		this.map2[this.getMonsterC().getY()][this.getMonsterC().getX()] = 'V';
+   		this.getMonsterC().setX(this.getMonsterC().getX()-1);
+   		this.map2[this.getMonsterC().getY()][this.getMonsterC().getX()] = 'C';
+       }
+       /** if y is lower than lorann's increments it**/
+       if (my < hy && map2[this.getMonsterC().getY()+1][this.getMonsterC().getX()]!= 'O' && map2[this.getMonsterC().getY()+1][this.getMonsterC().getX()]!= '-' && map2[this.getMonsterC().getY()+1][this.getMonsterC().getX()]!= 'I') {
+       	this.map2[this.getMonsterC().getY()][this.getMonsterC().getX()] = 'V';
+   		this.getMonsterC().setY(this.getMonsterC().getY()+1);
+   		this.map2[this.getMonsterC().getY()][this.getMonsterC().getX()] = 'C';
+       }
+       /** if y is higher than lorann's decrement it **/
+       if (my > hy && map2[this.getMonsterC().getY()-1][this.getMonsterC().getX()]!= 'O' && map2[this.getMonsterC().getY()-1][this.getMonsterC().getX()]!= '-' && map2[this.getMonsterC().getY()-1][this.getMonsterC().getX()]!= 'I') {
+       	this.map2[this.getMonsterC().getY()][this.getMonsterC().getX()] = 'V';
+   		this.getMonsterC().setY(this.getMonsterC().getY()-1);
+   		this.map2[this.getMonsterC().getY()][this.getMonsterC().getX()] = 'C';
+       }
+  	 if (mx == hx && my == hy){
+     	 //  this.loadMessage("06");
+     	   this.monsterA.setAlive(false);
+     	  this.monsterB.setAlive(false);
+     	 this.monsterC.setAlive(false);
+     	this.monsterD.setAlive(false);
+        }}
+   }
+}
+public void monsterD() {
+    {
+    	 if (this.monsterD.isAlive()== true){
+       int mx = getMonsterD().getX();
+       int hx = getPlayer().getX();
+       int my = getMonsterD().getY();
+       int hy = getPlayer().getY();
+       /** if x is lower than lorann's increments it**/
+       if (mx < hx && map2[this.getMonsterD().getY()][this.getMonsterD().getX()+1]!= 'O' && map2[this.getMonsterD().getY()][this.getMonsterD().getX()+1]!= '-' && map2[this.getMonsterD().getY()][this.getMonsterD().getX()+1]!= 'I') {
+       	this.map2[this.getMonsterD().getY()][this.getMonsterD().getX()] = 'V';
+   		this.getMonsterD().setX(this.getMonsterD().getX()+1);
+   		this.map2[this.getMonsterD().getY()][this.getMonsterD().getX()] = 'A';
+       }
+       /** if x is higher than lorann's decrement it**/
+       if (mx > hx && map2[this.getMonsterD().getY()][this.getMonsterD().getX()-1]!= 'O' && map2[this.getMonsterD().getY()][this.getMonsterD().getX()-1]!= '-' && map2[this.getMonsterD().getY()][this.getMonsterD().getX()-1]!= 'I') {
+   		this.map2[this.getMonsterD().getY()][this.getMonsterD().getX()] = 'V';
+   		this.getMonsterD().setX(this.getMonsterD().getX()-1);
+   		this.map2[this.getMonsterD().getY()][this.getMonsterD().getX()] = 'A';
+       }
+       /** if y is lower than lorann's increments it**/
+       if (my < hy && map2[this.getMonsterD().getY()+1][this.getMonsterD().getX()]!= 'O' && map2[this.getMonsterD().getY()+1][this.getMonsterD().getX()]!= '-' && map2[this.getMonsterD().getY()+1][this.getMonsterD().getX()]!= 'I') {
+       	this.map2[this.getMonsterD().getY()][this.getMonsterD().getX()] = 'V';
+   		this.getMonsterD().setY(this.getMonsterD().getY()+1);
+   		this.map2[this.getMonsterD().getY()][this.getMonsterD().getX()] = 'A';
+       }
+       /** if y is higher than lorann's decrement it **/
+       if (my > hy && map2[this.getMonsterD().getY()-1][this.getMonsterD().getX()]!= 'O' && map2[this.getMonsterD().getY()-1][this.getMonsterD().getX()]!= '-' && map2[this.getMonsterD().getY()-1][this.getMonsterD().getX()]!= 'I') {
+       	this.map2[this.getMonsterD().getY()][this.getMonsterD().getX()] = 'V';
+   		this.getMonsterD().setY(this.getMonsterD().getY()-1);
+   		this.map2[this.getMonsterD().getY()][this.getMonsterD().getX()] = 'A';
+       }
+  	 if (mx == hx && my == hy){
+     	//   this.loadMessage("06");
+     	   this.monsterA.setAlive(false);
+     	  this.monsterB.setAlive(false);
+     	 this.monsterC.setAlive(false);
+     	this.monsterD.setAlive(false);
+        }}
+   }
+}
+
+public void fireball(){
+	switch (lastKey){
+	case 1:
+	this.map2[this.getPlayer().getY()-1][this.getPlayer().getX()] = 'F';
+	System.out.println(lastKey);
+	while ()
+	break;
+	case 2:
+	this.map2[this.getPlayer().getY()+1][this.getPlayer().getX()] = 'F';
+	System.out.println(lastKey);
+	break;
+	case 3:
+	this.map2[this.getPlayer().getY()][this.getPlayer().getX()+1] = 'F';
+	System.out.println(lastKey);
+	break;
+	case 4:
+	this.map2[this.getPlayer().getY()][this.getPlayer().getX()-1] = 'F';
+	System.out.println(lastKey);
+	break;
+}}
+
+public int getLastKey() {
+	return this.lastKey;
+}
+
+public void setLastKey(int lastKey) {
+	this.lastKey = lastKey;
+	
+}
 }

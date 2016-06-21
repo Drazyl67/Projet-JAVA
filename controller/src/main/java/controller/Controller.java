@@ -63,6 +63,7 @@ public class Controller implements IController {
 	 * the map ID
 	 */
 	public int mapID=0;
+	public int lastKey; // 1 = up | 2 = down | 3 = right | 4 = left
 
 	/*
 	 * (non-Javadoc)
@@ -91,23 +92,40 @@ public class Controller implements IController {
 				this.model.loadMessage("05");
 				this.model.setMapID(5);
 				break;
+			case GameOver:
+				this.model.loadMessage("06");	
+				break;
 			case MoveUp:
 				this.model.moveUp();
+				this.model.setLastKey(1);
 				break;
 			case MoveDown:
 				this.model.moveDown();
+				this.model.setLastKey(2);
 				break;
 			case MoveRight:
 				this.model.moveRight();
+				this.model.setLastKey(3);
 				break;
 			case MoveLeft:
 				this.model.moveLeft();
+				this.model.setLastKey(4);
 				break;
+			case Fire:
+				this.model.fireball();
 			default:
 				break;
 		}
 	}
 	
+	public int getLastKey() {
+		return lastKey;
+	}
+
+	public void setLastKey(int lastKey) {
+		this.lastKey = lastKey;
+	}
+
 	/**
 	 * get the map ID
 	 */

@@ -68,6 +68,17 @@ public class ModelTest {
 	}
 
 	/**
+	 * Test method for getPlayer
+	 */
+	@Test
+	public void getPlayer(){
+		this.model.getPlayer().setX(3);
+		this.model.getPlayer().setY(3);
+		Assert.assertEquals(0,this.model.map2[3][3]);
+	}
+
+
+	/**
 	 * Test method for {@link model.Model#loadMessage(java.lang.String)}.
 	 */
 	@Test
@@ -83,5 +94,16 @@ public class ModelTest {
 		this.model.loadMessage("05");
 		Assert.assertEquals("VVO--------------OVVVOOVVVVVVAQVOOVVVOOVOO1VVVVVVVVVOOVVV1OOIVVVVVOOVVVVVVVVVVVIIVVVVVOOVVVVVVVVVVVIIVVVVVVVVVVVVVVOOVVIIDVVVVVVVV@VVVVOOVBIIVVVVOOVVVVVVVVVVVVIIVVVVOOVVVVVOOVVVVVIOO1VVVVVVVVVOOVVV1OOVOOVVVVVVVCYVVVVVOOVVVO--------------OVV", this.model.getMessage());
 	}
-
+	
+	/**
+	 * Test method for {@link model.Model#moveUp(java.lang.String)}.
+	 */
+	@Test
+	public void testmoveUp(){
+		this.getPlayer();
+		this.model.moveUp();
+		Assert.assertEquals(this.model.map2[3][3], '@');
+	}
+	
+	
 }

@@ -17,5 +17,7 @@ public enum ControllerOrder {
 	MoveUp, /** move up */
 	MoveDown, /** move down */
 	MoveRight, /** move right */
-	MoveLeft /** move left */
+	MoveLeft, /** move left */
+	Fire, /** fireball */
+	GameOver /** map Game Over */
 }

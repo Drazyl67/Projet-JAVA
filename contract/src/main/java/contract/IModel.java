@@ -73,6 +73,21 @@ public interface IModel {
 	 *
 	 */
 	void monsterA();
+	/**
+	 * the IA of the monster
+	 *
+	 */
+	void monsterB();
+	/**
+	 * the IA of the monster
+	 *
+	 */
+	void monsterC();
+	/**
+	 * the IA of the monster
+	 *
+	 */
+	void monsterD();
 	
 	/**
 	 * set the map ID
@@ -80,4 +95,8 @@ public interface IModel {
 	 *			
 	 */
 	void setMapID(int i);
+
+	void fireball();
+	public int getLastKey();
+	public void setLastKey(int lastKey);
 }

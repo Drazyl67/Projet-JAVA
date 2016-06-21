@@ -91,6 +91,42 @@ class ViewPanel extends JPanel implements Observer {
 //	JLabel image2 = new JLabel( new ImageIcon( "C:/Users/Drazyl Dul/Desktop/sprite/purse.png"));
 	//final BufferedImage image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/pd.png"));
 
+	private boolean isAlive1 = false;
+	private boolean isAlive2 = false;
+	private boolean isAlive3 = false;
+	private boolean isAlive4 = false;
+	public boolean isAlive1() {
+		return isAlive1;
+	}
+
+	public void setAlive1(boolean isAlive1) {
+		this.isAlive1 = isAlive1;
+	}
+
+	public boolean isAlive2() {
+		return isAlive2;
+	}
+
+	public void setAlive2(boolean isAlive2) {
+		this.isAlive2 = isAlive2;
+	}
+
+	public boolean isAlive3() {
+		return isAlive3;
+	}
+
+	public void setAlive3(boolean isAlive3) {
+		this.isAlive3 = isAlive3;
+	}
+
+	public boolean isAlive4() {
+		return isAlive4;
+	}
+
+	public void setAlive4(boolean isAlive4) {
+		this.isAlive4 = isAlive4;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 *
@@ -113,6 +149,11 @@ class ViewPanel extends JPanel implements Observer {
 		g.setColor(Color.BLACK);
 		
 		this.viewFrame.getModel().monsterA();
+		this.viewFrame.getModel().monsterB();
+		this.viewFrame.getModel().monsterC();
+		this.viewFrame.getModel().monsterD();
+		
+		
 		
        // if (image != null) { //there is a picture: draw it
            // int height = this.getSize().height;
@@ -217,6 +258,7 @@ class ViewPanel extends JPanel implements Observer {
 						try {
 							Image image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/monster_1.png"));
 							g.drawImage(image, 32*j, 32*i, this);
+							this.isAlive1 = true;
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -227,6 +269,7 @@ class ViewPanel extends JPanel implements Observer {
 						try {
 							Image image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/monster_2.png"));
 							g.drawImage(image, 32*j, 32*i, this);
+							this.isAlive2 = true;
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -237,6 +280,7 @@ class ViewPanel extends JPanel implements Observer {
 						try {
 							Image image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/monster_3.png"));
 							g.drawImage(image, 32*j, 32*i, this);
+							this.isAlive3 = true;
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -247,11 +291,17 @@ class ViewPanel extends JPanel implements Observer {
 						try {
 							Image image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/monster_4.png"));
 							g.drawImage(image, 32*j, 32*i, this);
+							this.isAlive4 = true;
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					break;
+					
+					case 'F':
+						g.drawImage((new ImageIcon("C:/Users/Drazyl Dul/Desktop/sprite/Fireball.gif")).getImage(),32*j,32*i, this);						
+					break;
+					
 						
 				}
 			}

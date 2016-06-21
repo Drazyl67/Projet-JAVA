@@ -4,7 +4,7 @@ package model;
 /**
  * the class monsterA
  */
-public class MonsterA {
+public class MonsterC {
 		
 		/**
 		 * the x
@@ -16,7 +16,7 @@ public class MonsterA {
 		 */
 		int y;
 		
-		boolean isAlive = false;
+boolean isAlive = false;
 		
 		public boolean isAlive() {
 			return isAlive;
@@ -25,7 +25,7 @@ public class MonsterA {
 		public void setAlive(boolean isAlive) {
 			this.isAlive = isAlive;
 		}
-
+		
 		/**
 		 * get x
 		 */

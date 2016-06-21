@@ -57,6 +57,8 @@ public class View implements IView, Runnable {
 				return ControllerOrder.MoveLeft;
 			case KeyEvent.VK_RIGHT:
 				return ControllerOrder.MoveRight;
+			case KeyEvent.VK_SPACE:
+				return ControllerOrder.Fire;
 			default:
 				return ControllerOrder.MapInconnu;
 		}

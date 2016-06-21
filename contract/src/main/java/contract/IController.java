@@ -31,4 +31,7 @@ public interface IController {
 	 *          the map ID
 	 */
 	public void setMapID(int mapID);
+	
+	public int getLastKey();
+	public void setLastKey(int lastKey);
 }
