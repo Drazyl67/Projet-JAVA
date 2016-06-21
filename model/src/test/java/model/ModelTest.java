@@ -72,14 +72,16 @@ public class ModelTest {
 	 */
 	@Test
 	public void testGetMessageString() {
-		this.model.loadMessage("GB");
-		Assert.assertEquals("Hello world", this.model.getMessage());
-		this.model.loadMessage("FR");
-		Assert.assertEquals("Bonjour le monde", this.model.getMessage());
-		this.model.loadMessage("DE");
-		Assert.assertEquals("Hallo Welt", this.model.getMessage());
-		this.model.loadMessage("ID");
-		Assert.assertEquals("Salamat pagi dunia", this.model.getMessage());
+		this.model.loadMessage("01");
+		Assert.assertEquals("O------------------O\nIVVVVVVVVVVVVVVVVVVI\nIVVV@VVVVVVVVVQVVVVI\nIVVVVVVVVVVVVVVVVVVI\nIVVVVVVVVVVVVVVVVVVI\nIVVVVVVVVVVVVVVVVVVI\nI1OOOOVVVVVVVVVVVVVI\nI1OAVOVVVVVVVVVVVVVI\nI1OBVOVVVVVVVVYVVVVI\nI1OCVOVVVVVVVVVVVVVI\nI1ODVOVVVVVVVVVVVVVI\nO-OOOO-------------O", this.model.getMessage());
+		this.model.loadMessage("02");
+		Assert.assertEquals("VVVVVVVVVVVVVVO---OVVVVVVVVVVVVVVVIVVVOOO-------O-----OVVVVIIVV1VVVVOVVVVVVVVVVIIV1DVVVVQVVVVVVVV@VYIVV1VVVVOVVVVVVVVVVIO-------O-----OVVVVIVVVVVVVVVVVVVVIVVVOOVVVVIVVIVVVVVVO---OVVVVVIVVIVVVVVVVVVVVVVVOVVVVVVOVVVVVVVVVVVVVOOOOOOVVVVVVVVVVV", this.model.getMessage());
+		this.model.loadMessage("03");
+		Assert.assertEquals("O------------------OIV@VVVVVVVVVVVVVVVVIO----------------OVIIVVVVVVVVVVVVVVVVVVIIVVVO--------------OIVVVYVVVVVVVVVVVVVVVIVVVO--------------OIVVVIVVVVVVVVVVVBVVIIVVV1VVVVVVVVVVVVVVIOOVVI11O----1------OVO--O--OQVVVVVVVVAVIVVVVVVVO-----------O", this.model.getMessage());
+		this.model.loadMessage("04");
+		Assert.assertEquals("O-------OO---OOOOOOVIVVVVVVVOVVAVVVVOOOOIVVVVVVVOVVVOOOOO--OIVVOOOVVOOVVOVVVVVVOOOOOVVVVVOVV1VOOVVVOOV1OVVVVVOOOOOOVVVIOIVVVVVVVOOVVVVVVVVIOIVVVVOOOOVVBVVVVOOOOIVVVOOVVVVVOOVVVVVVIIVVVVVVVVVVOOOVVVVVIOOVVVVVVOVV1YOOVVVQIVOOO----OOOOOOOO---O", this.model.getMessage());
+		this.model.loadMessage("05");
+		Assert.assertEquals("VVO--------------OVVVOOVVVVVVAQVOOVVVOOVOO1VVVVVVVVVOOVVV1OOIVVVVVOOVVVVVVVVVVVIIVVVVVOOVVVVVVVVVVVIIVVVVVVVVVVVVVVOOVVIIDVVVVVVVV@VVVVOOVBIIVVVVOOVVVVVVVVVVVVIIVVVVOOVVVVVOOVVVVVIOO1VVVVVVVVVOOVVV1OOVOOVVVVVVVCYVVVVVOOVVVO--------------OVV", this.model.getMessage());
 	}
 
 }

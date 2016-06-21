@@ -8,14 +8,14 @@ package contract;
 public enum ControllerOrder {
 
 	/** The English. */
-	Map1, /** The French. */
-	Map2, /** The Deutch. */
-	Map3, /** The Indonesia. */
-	Map4,
-	Map5,
-	MapInconnu,
-	MoveUp,
-	MoveDown,
-	MoveRight,
-	MoveLeft
+	Map1, /** map 1 */
+	Map2, /** map 2 */
+	Map3, /** map 3 */
+	Map4, /** map 4 */
+	Map5, /** map 5 */
+	MapInconnu, /** the default map */
+	MoveUp, /** move up */
+	MoveDown, /** move down */
+	MoveRight, /** move right */
+	MoveLeft /** move left */
 }

@@ -58,6 +58,11 @@ public class Controller implements IController {
 	private void setModel(final IModel model) {
 		this.model = model;
 	}
+	
+	/**
+	 * the map ID
+	 */
+	public int mapID=0;
 
 	/*
 	 * (non-Javadoc)
@@ -68,18 +73,23 @@ public class Controller implements IController {
 		switch (controllerOrder) {
 			case Map1:
 				this.model.loadMessage("01");
+				this.model.setMapID(1);
 				break;
 			case Map2:
 				this.model.loadMessage("02");
+				this.model.setMapID(2);
 				break;
 			case Map3:
 				this.model.loadMessage("03");
+				this.model.setMapID(3);
 				break;
 			case Map4:
 				this.model.loadMessage("04");
+				this.model.setMapID(4);
 				break;
 			case Map5:
 				this.model.loadMessage("05");
+				this.model.setMapID(5);
 				break;
 			case MoveUp:
 				this.model.moveUp();
@@ -94,9 +104,22 @@ public class Controller implements IController {
 				this.model.moveLeft();
 				break;
 			default:
-				this.model.monsterAMove();
 				break;
 		}
+	}
+	
+	/**
+	 * get the map ID
+	 */
+	public int getMapID() {
+		return mapID;
+	}
+	
+	/**
+	 * set the map ID
+	 */
+	public void setMapID(int mapID) {
+		this.mapID = mapID;
 	}
 
 }

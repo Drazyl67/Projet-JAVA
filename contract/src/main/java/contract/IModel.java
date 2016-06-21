@@ -30,22 +30,54 @@ public interface IModel {
 	 * @return the observable
 	 */
 	Observable getObservable();
-
+	
+	/**
+	 * Gets the map.
+	 *
+	 * @return the map
+	 */
 	char[][] getMap2();
-
+	
+	/**
+	 * Fill the map in array
+	 *
+	 */
 	void remplissage();
-
+	
+	/**
+	 * move the player up
+	 *
+	 */
 	void moveUp();
-
+	
+	/**
+	 * move the player left
+	 *
+	 */
 	void moveLeft();
-
+	
+	/**
+	 * move the player right
+	 *
+	 */
 	void moveRight();
-
+	
+	/**
+	 * move the player down
+	 *
+	 */
 	void moveDown();
-
+	
+	/**
+	 * the IA of the monster
+	 *
+	 */
 	void monsterA();
 	
-	int getO();
-	
-	void monsterAMove();
+	/**
+	 * set the map ID
+	 *	@param i
+	 *			
+	 */
+	void setMapID(int i);
 }

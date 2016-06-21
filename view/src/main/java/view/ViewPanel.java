@@ -2,23 +2,15 @@ package view;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 
 /**
  * The Class ViewPanel.
@@ -31,7 +23,7 @@ class ViewPanel extends JPanel implements Observer {
 	private ViewFrame					viewFrame;
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -998294702363713521L;
-	
+	/** the 1D map array */
 	private char[][] map;
 
 	/**
@@ -95,7 +87,6 @@ class ViewPanel extends JPanel implements Observer {
 		this.viewFrame.getModel().remplissage();
 		this.repaint();
 	}
-	int o=0;
 //	JLabel image = new JLabel( new ImageIcon( "C:/Users/Drazyl Dul/Desktop/sprite/pd.png"));
 //	JLabel image2 = new JLabel( new ImageIcon( "C:/Users/Drazyl Dul/Desktop/sprite/purse.png"));
 	//final BufferedImage image = ImageIO.read(new File("C:/Users/Drazyl Dul/Desktop/sprite/pd.png"));
@@ -122,7 +113,6 @@ class ViewPanel extends JPanel implements Observer {
 		g.setColor(Color.BLACK);
 		
 		this.viewFrame.getModel().monsterA();
-		o = o+1;
 		
        // if (image != null) { //there is a picture: draw it
            // int height = this.getSize().height;
@@ -266,13 +256,6 @@ class ViewPanel extends JPanel implements Observer {
 				}
 			}
 		}
-	}
-	public int getO(){
-		return o;
-	}
-	
-	public void setO(){
-		this.o = o;
 	}
 }
 

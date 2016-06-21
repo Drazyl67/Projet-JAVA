@@ -19,4 +19,16 @@ public interface IController {
 	 *          the controller order
 	 */
 	public void orderPerform(ControllerOrder controllerOrder);
+	/**
+	 * 
+	 * @return mapID
+	 */
+	public int getMapID();
+	/**
+	 * Set map ID
+	 *
+	 * @param mapID
+	 *          the map ID
+	 */
+	public void setMapID(int mapID);
 }

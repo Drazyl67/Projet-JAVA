@@ -1,15 +1,8 @@
 package model;
 
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
+
 import java.sql.SQLException;
 import java.util.Observable;
-
-import javax.imageio.ImageIO;
-
-import org.omg.CORBA.SystemException;
-
 import contract.IModel;
 
 /**
@@ -23,16 +16,23 @@ public class Model extends Observable implements IModel {
 
 	/** The message. */
 	private String message;
+	/** the maps'array */
 	public char[][] map2 = new char[12][20];
+	/** the player */
 	private Player player;
+	/** the permeability (true or false) */
 	public boolean permeability;
+	/** the monster A */
 	private MonsterA monsterA;
-	public int o;
-	
+
+	/** return the player position */
 	public Player getPlayer() {
 		return player;
 	}
 	
+	/**
+	 * Return the monster position
+	 */
 	public MonsterA getMonsterA(){
 		return monsterA;
 	}
@@ -91,10 +91,9 @@ public class Model extends Observable implements IModel {
 		return this;
 	}
 	
-	public void putInTab(int i, int j, char c){
-		this.map2[i][j] = c;
-	}
-	
+	/**
+	 * Fill the 2D array with the map'elements
+	 */
 	public void remplissage(){
 		String [] map = this.message.split("\n");
 		for (int i=0;i<map.length;i++){
@@ -176,48 +175,218 @@ public class Model extends Observable implements IModel {
 			}
 		}*/
 	
+	/** the map ID */
+	public int mapID=0;
+	
+	/**
+	 * Get the 2D array 
+	 */
 	public char[][] getMap2(){
 		return this.map2;
 	}
 	
+	/**
+	 * Get the map ID
+	 */
+	public int getMapID(){
+		return this.mapID;
+	}
+	
+	/**
+	 * Set the map ID
+	 */
+	public void setMapID(int mapID){
+		this.mapID = mapID;
+	}
+	
+	/**
+	 * the score
+	 */
+	public int score=0;
+
+	/**
+	 * Move up the player
+	 */
 	public void moveUp(){
-		if ((map2[this.getPlayer().getY()-1][this.getPlayer().getX()]) != 'O' && (map2[this.getPlayer().getY()-1][this.getPlayer().getX()]) != '-' && (map2[this.getPlayer().getY()-1][this.getPlayer().getX()]) != 'I'){
+		if ((map2[this.getPlayer().getY()-1][this.getPlayer().getX()]) == 'V' || map2[this.getPlayer().getY()-1][this.getPlayer().getX()] == 'U'){
 			
 		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
 		this.getPlayer().setY(this.getPlayer().getY()-1);
 		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
 		}
-		else;
+		else if ((map2[this.getPlayer().getY()-1][this.getPlayer().getX()]) == '1'){
+			score+=100;
+			System.out.println("Votre score: " + score);
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
+			this.getPlayer().setY(this.getPlayer().getY()-1);
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+		}
+		else if (map2[this.getPlayer().getY()-1][this.getPlayer().getX()] == 'Q'){
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
+			this.getPlayer().setX(this.getPlayer().getY()-1);
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+			switch (mapID){
+			case 1:
+			map2[8][14] = 'U';
+			break;
+			case 2:
+			map2[4][19] = 'U';
+			break;
+			case 3:
+			map2[5][4] = 'U';
+			break;
+			case 4:
+			map2[10][12] = 'U';
+			break;
+			case 5:
+			map2[11][10] = 'U';
+			break;
+			}
+		}
+		else if (map2[this.getPlayer().getY()-1][this.getPlayer().getX()] == 'U'){
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
+			this.getPlayer().setX(this.getPlayer().getY()-1);
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+			this.loadMessage("05");
+		}
 	}
-	
+	/**
+	 * Move down the player
+	 */
 	public void moveDown(){
-		if (map2[this.getPlayer().getY()+1][this.getPlayer().getX()] != 'O' && map2[this.getPlayer().getY()+1][this.getPlayer().getX()] != '-' && map2[this.getPlayer().getY()+1][this.getPlayer().getX()] != 'I'){
+		if (map2[this.getPlayer().getY()+1][this.getPlayer().getX()] == 'V'){
 		
 		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
 		this.getPlayer().setY(this.getPlayer().getY()+1);
 		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
 		}
-		else;
+		else if (map2[this.getPlayer().getY()+1][this.getPlayer().getX()] == '1'){
+			score+=100;
+			System.out.println("Votre score: " + score);
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
+			this.getPlayer().setY(this.getPlayer().getY()+1);
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+		}
+		else if (map2[this.getPlayer().getY()+1][this.getPlayer().getX()] == 'Q'){
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
+			this.getPlayer().setX(this.getPlayer().getY()+1);
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+			switch (mapID){
+			case 1:
+			map2[8][14] = 'U';
+			break;
+			case 2:
+			map2[4][19] = 'U';
+			break;
+			case 3:
+			map2[5][4] = 'U';
+			break;
+			case 4:
+			map2[10][12] = 'U';
+			break;
+			case 5:
+			map2[11][10] = 'U';
+			break;
+			}
+		}
+		else if (map2[this.getPlayer().getY()+1][this.getPlayer().getX()] == 'U'){
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
+			this.getPlayer().setX(this.getPlayer().getY()+1);
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+			this.loadMessage("05");
+		}
 	}
-	
+	/**
+	 * Move right the player
+	 */
 	public void moveRight(){
-		if (map2[this.getPlayer().getY()][this.getPlayer().getX()+1] != 'O' && map2[this.getPlayer().getY()][this.getPlayer().getX()+1] != '-' && map2[this.getPlayer().getY()][this.getPlayer().getX()+1] != 'I'){
+		if (map2[this.getPlayer().getY()][this.getPlayer().getX()+1] == 'V'){
 		
 		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
 		this.getPlayer().setX(this.getPlayer().getX()+1);
 		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
 		}
-		else;
+		else if (map2[this.getPlayer().getY()][this.getPlayer().getX()+1] == '1'){
+			score+=100;
+			System.out.println("Votre score: " + score);
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
+			this.getPlayer().setX(this.getPlayer().getX()+1);
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+		}
+		else if (map2[this.getPlayer().getY()][this.getPlayer().getX()+1] == 'Q'){
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
+			this.getPlayer().setX(this.getPlayer().getX()+1);
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+			switch (mapID){
+			case 1:
+			map2[8][14] = 'U';
+			break;
+			case 2:
+			map2[4][19] = 'U';
+			break;
+			case 3:
+			map2[5][4] = 'U';
+			break;
+			case 4:
+			map2[10][12] = 'U';
+			break;
+			case 5:
+			map2[11][10] = 'U';
+			break;
+			}
+		}
+		else if (map2[this.getPlayer().getY()][this.getPlayer().getX()+1] == 'U'){
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
+			this.getPlayer().setX(this.getPlayer().getX()+1);
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+			this.loadMessage("05");
+		}
 	}
-	
+	/**
+	 * Move left the player
+	 */
 	public void moveLeft(){
-		if (map2[this.getPlayer().getY()][this.getPlayer().getX()-1] != 'O' && map2[this.getPlayer().getY()][this.getPlayer().getX()-1] != '-' && map2[this.getPlayer().getY()][this.getPlayer().getX()-1] != 'I'){
+		if (map2[this.getPlayer().getY()][this.getPlayer().getX()-1] == 'V'){
 		
 		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
 		this.getPlayer().setX(this.getPlayer().getX()-1);
 		this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
 		}
-		else;
+		else if (map2[this.getPlayer().getY()][this.getPlayer().getX()-1] == '1'){
+			score+=100;
+			System.out.println("Votre score: " + score);
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
+			this.getPlayer().setX(this.getPlayer().getX()-1);
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+		}
+		else if (map2[this.getPlayer().getY()][this.getPlayer().getX()-1] == 'Q'){
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
+			this.getPlayer().setX(this.getPlayer().getX()-1);
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+			switch (mapID){
+			case 1:
+			map2[8][14] = 'U';
+			break;
+			case 2:
+			map2[4][19] = 'U';
+			break;
+			case 3:
+			map2[5][4] = 'U';
+			break;
+			case 4:
+			map2[10][12] = 'U';
+			break;
+			case 5:
+			map2[11][10] = 'U';
+			break;
+			}
+		}
+		else if (map2[this.getPlayer().getY()][this.getPlayer().getX()-1] == 'U'){
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
+			this.getPlayer().setX(this.getPlayer().getX()-1);
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+			this.loadMessage("05");
+		}
 	}
 
 	/*public void monsterAMove(){
@@ -233,9 +402,11 @@ public class Model extends Observable implements IModel {
 			//this.viewFrame.getModel().setO(this.viewFrame.getModel().getO() +1);
 		}
 	}}*/
-	
+	/** 
+	 * 
+	 * the monster A IA
+	 */
 public void monsterA() {
-  //  if (this.getO() == 3) {
          {
             int mx = getMonsterA().getX();
             int hx = getPlayer().getX();
@@ -267,13 +438,4 @@ public void monsterA() {
             }
         }
     }
-//}
-	public int getO(){
-		return o;
-	}
-
-	public void monsterAMove() {
-		// TODO Auto-generated method stub
-		
-	}
 }
