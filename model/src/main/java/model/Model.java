@@ -32,12 +32,13 @@ public class Model extends Observable implements IModel {
 	private MonsterD monsterD;
 	private FireBall fireball;
 	public int lastKey=1;
+	public boolean isShot = false;
 
 	/** return the player position */
 	public Player getPlayer() {
 		return player;
 	}
-	
+
 	/**
 	 * Return the monster position
 	 */
@@ -287,7 +288,7 @@ public class Model extends Observable implements IModel {
 		}
 		else if (map2[this.getPlayer().getY()-1][this.getPlayer().getX()] == 'U'){
 			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
-			this.getPlayer().setX(this.getPlayer().getY()-1);
+			this.getPlayer().setY(this.getPlayer().getY()-1);
 			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
 			switch (mapID){
 			case 1:
@@ -303,6 +304,12 @@ public class Model extends Observable implements IModel {
 				this.loadMessage("05");
 				break;
 			}
+		}
+		else if (map2[this.getPlayer().getY()-1][this.getPlayer().getX()] == 'F'){
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
+			this.getPlayer().setY(this.getPlayer().getY()-1);
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+			this.isShot = false;
 		}
 	}
 	/**
@@ -342,11 +349,11 @@ public class Model extends Observable implements IModel {
 			case 5:
 			map2[11][10] = 'U';
 			break;
-			}System.out.println("lawl");
+			}
 		}
 		else if (map2[this.getPlayer().getY()+1][this.getPlayer().getX()] == 'U'){
 			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
-			this.getPlayer().setX(this.getPlayer().getY()+1);
+			this.getPlayer().setY(this.getPlayer().getY()+1);
 			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
 			switch (mapID){
 			case 1:
@@ -362,6 +369,12 @@ public class Model extends Observable implements IModel {
 				this.loadMessage("05");
 				break;
 			}
+		}
+		else if (map2[this.getPlayer().getY()+1][this.getPlayer().getX()] == 'F'){
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
+			this.getPlayer().setY(this.getPlayer().getY()+1);
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+			this.isShot = false;
 		}
 	}
 	/**
@@ -425,6 +438,12 @@ public class Model extends Observable implements IModel {
 			}
 			
 		}
+		else if (map2[this.getPlayer().getY()][this.getPlayer().getX()+1] == 'F'){
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
+			this.getPlayer().setX(this.getPlayer().getX()+1);
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+			this.isShot = false;
+		}
 	}
 	/**
 	 * Move left the player
@@ -484,6 +503,12 @@ public class Model extends Observable implements IModel {
 				break;
 			}
 		}
+		else if (map2[this.getPlayer().getY()][this.getPlayer().getX()-1] == 'F'){
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = 'V';
+			this.getPlayer().setX(this.getPlayer().getX()-1);
+			this.map2[this.getPlayer().getY()][this.getPlayer().getX()] = '@';
+			this.isShot = false;
+		}
 	}
 
 	/*public void monsterAMove(){
@@ -535,7 +560,7 @@ public void monsterA() {
         		this.map2[this.getMonsterA().getY()][this.getMonsterA().getX()] = 'A';
             }
             if (mx == hx && my == hy){
-         	 //  this.loadMessage("06");
+         	   this.loadMessage("06");
          	   this.monsterA.setAlive(false);
          	  this.monsterB.setAlive(false);
          	 this.monsterC.setAlive(false);
@@ -575,7 +600,7 @@ public void monsterB() {
    		this.map2[this.getMonsterB().getY()][this.getMonsterB().getX()] = 'B';
        }
     	 if (mx == hx && my == hy){
-       	  // this.loadMessage("06");
+       	   this.loadMessage("06");
        	   this.monsterA.setAlive(false);
        	  this.monsterB.setAlive(false);
        	 this.monsterC.setAlive(false);
@@ -615,7 +640,7 @@ public void monsterC() {
    		this.map2[this.getMonsterC().getY()][this.getMonsterC().getX()] = 'C';
        }
   	 if (mx == hx && my == hy){
-     	 //  this.loadMessage("06");
+     	   this.loadMessage("06");
      	   this.monsterA.setAlive(false);
      	  this.monsterB.setAlive(false);
      	 this.monsterC.setAlive(false);
@@ -655,7 +680,7 @@ public void monsterD() {
    		this.map2[this.getMonsterD().getY()][this.getMonsterD().getX()] = 'A';
        }
   	 if (mx == hx && my == hy){
-     	//   this.loadMessage("06");
+     	   this.loadMessage("06");
      	   this.monsterA.setAlive(false);
      	  this.monsterB.setAlive(false);
      	 this.monsterC.setAlive(false);
@@ -667,21 +692,29 @@ public void monsterD() {
 public void fireball(){
 	switch (lastKey){
 	case 1:
+		if (this.isShot == false){
 	this.map2[this.getPlayer().getY()-1][this.getPlayer().getX()] = 'F';
 	System.out.println(lastKey);
-	while ()
+	this.isShot = true;
+		}
 	break;
 	case 2:
+		if (this.isShot == false){
 	this.map2[this.getPlayer().getY()+1][this.getPlayer().getX()] = 'F';
 	System.out.println(lastKey);
+	this.isShot = true;}
 	break;
 	case 3:
+		if (this.isShot == false){
 	this.map2[this.getPlayer().getY()][this.getPlayer().getX()+1] = 'F';
 	System.out.println(lastKey);
+	this.isShot = true;}
 	break;
 	case 4:
+		if (this.isShot == false){
 	this.map2[this.getPlayer().getY()][this.getPlayer().getX()-1] = 'F';
 	System.out.println(lastKey);
+	this.isShot = true;}
 	break;
 }}
 

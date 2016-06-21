@@ -99,4 +99,6 @@ public interface IModel {
 	void fireball();
 	public int getLastKey();
 	public void setLastKey(int lastKey);
+
+
 }

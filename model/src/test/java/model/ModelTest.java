@@ -95,15 +95,7 @@ public class ModelTest {
 		Assert.assertEquals("VVO--------------OVVVOOVVVVVVAQVOOVVVOOVOO1VVVVVVVVVOOVVV1OOIVVVVVOOVVVVVVVVVVVIIVVVVVOOVVVVVVVVVVVIIVVVVVVVVVVVVVVOOVVIIDVVVVVVVV@VVVVOOVBIIVVVVOOVVVVVVVVVVVVIIVVVVOOVVVVVOOVVVVVIOO1VVVVVVVVVOOVVV1OOVOOVVVVVVVCYVVVVVOOVVVO--------------OVV", this.model.getMessage());
 	}
 	
-	/**
-	 * Test method for {@link model.Model#moveUp(java.lang.String)}.
-	 */
-	@Test
-	public void testmoveUp(){
-		this.getPlayer();
-		this.model.moveUp();
-		Assert.assertEquals(this.model.map2[3][3], '@');
-	}
+
 	
 	
 }
